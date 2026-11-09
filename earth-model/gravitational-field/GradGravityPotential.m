@@ -189,11 +189,14 @@ for nn = 2:N
         Pnp1m = Pnp1mcoscolat(mmp1);
         % Precompute the standard longitudinal variation of the series
         CnmCosmLon_plus_SnmSinmLon = Cnm*cosmLon + Snm*sinmLon;
-        % Compute the derivative of Pnm(cos(x)) with respect to x using
-        % this degree and the next degree evaluated at the same x and
-        % order m with its leading negative sign disposed away (to be added
-        % back in at the very end of this evaluation)
-        negative_dPnmcoscolatdcolat = (nnp1 - mm)*csccolat*Pnp1m + nnp1*cotcolat*Pnm;
+        % Negative derivative of Pnm(cos(colat)) with respect to colatitude,
+        % using degree n and n+1 at the same order m (the leading negative
+        % sign is added back at the very end of this evaluation). For
+        % fully normalized Legendre polynomials, the recurrence gives
+        % K = sqrt(((n+1)^2 - m^2)(2n+1)/(2n+3)) with a minus sign on the
+        % csc term.
+        Knm = sqrt((nnp1^2 - mm^2)*(2*nn + 1)/(2*nn + 3));
+        negative_dPnmcoscolatdcolat = nnp1*cotcolat*Pnm - Knm*csccolat*Pnp1m;
         
         % Compute the inner summations dependent upon the order m
         orderSeries_r = orderSeries_r + CnmCosmLon_plus_SnmSinmLon*Pnm;
