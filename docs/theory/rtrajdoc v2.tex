@@ -2101,9 +2101,9 @@ Otherwise, the gradient is obtained exactly as
 &\quad\, + \frac{GM}{r^2} \sum_{n = 2}^\infty \sum_{m = 0}^n \left(\frac{a}{r}\right)^{\!n}(\overbar{C}_{nm} \cos m\lambda + \overbar{S}_{nm} \sin m\lambda) \frac{\partial \overbar{P}_{nm}(\cos\theta)}{\partial \theta} \ \hat{e}_{\theta'} \nonumber\\
 &\quad\, - \frac{GM}{r^2} \sum_{n = 2}^\infty \sum_{m = 0}^n m \left(\frac{a}{r}\right)^{\!n}(\overbar{C}_{nm} \sin m\lambda - \overbar{S}_{nm} \cos m\lambda) \frac{\overbar{P}_{nm}(\cos\theta)}{\sin\theta} \ \hat{e}_{\lambda'},
 \end{align}
-where the derivative of the associated Legendre polynomial is [Nonlinear PDEs pg. 705, wikipedia]
+where the derivative of the fully normalized associated Legendre polynomial, using the same degree and order and the next degree, is
 \begin{equation}
-\frac{\partial \overbar{P}_{nm}(\cos\theta)}{\partial\theta} = -(n+m)(n-m+1)\overbar{P}_{n(m-1)}(\cos\theta) - m \cot\theta\overbar{P}_{nm}(\cos\theta).
+\frac{\partial \overbar{P}_{nm}(\cos\theta)}{\partial\theta} = \sqrt{\frac{\left((n+1)^2 - m^2\right)(2n+1)}{2n+3}} \, \frac{\overbar{P}_{(n+1)m}(\cos\theta)}{\sin\theta} - (n+1) \cot\theta\,\overbar{P}_{nm}(\cos\theta).
 \end{equation}
 %The required transformation back to the inertial ECI frame then follows (\ref{eq:GravitationalAccelSPHR}) exactly.
 In either approach, the gravity coefficients and associated Legendre polynomials must be read and computed respectively at least once per term; that is, one method may be more efficient than the other, but perhaps at the cost of accuracy. Supposing similar accuracy is desired between the two options, numerically evaluating the gradient is likely to be much more computationally expensive than doing a direct evaluation. The total gravity still includes the effects of centrifugal potential $\Phi$ such that, again in spherical coordiantes,
